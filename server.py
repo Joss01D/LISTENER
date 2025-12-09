@@ -15,7 +15,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_header("Content-type", "text/plain")
         self.end_headers()
         self.wfile.write(b"pong")
-    return
+        return
 
     def do_GET(self):
         # Parseamos la URL y los parámetros
