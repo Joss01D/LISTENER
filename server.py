@@ -9,12 +9,12 @@ import json
 PORT = int(os.environ.get("PORT", 8000))
 
 class RequestHandler(BaseHTTPRequestHandler):
-    
+
     if parsed_path.path == "/ping":
-    self.send_response(200)
-    self.send_header("Content-type", "text/plain")
-    self.end_headers()
-    self.wfile.write(b"pong")
+        self.send_response(200)
+        self.send_header("Content-type", "text/plain")
+        self.end_headers()
+        self.wfile.write(b"pong")
     return
 
     def do_GET(self):
