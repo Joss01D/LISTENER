@@ -11,12 +11,14 @@ PORT = int(os.environ.get("PORT", 8000))
 class RequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-            if parsed_path.path == "/ping":
-        self.send_response(200)
-        self.send_header("Content-type", "text/plain")
-        self.end_headers()
-        self.wfile.write(b"pong")
-        return
+        parsed_path = urlparse(self.path)  # <- 4 espacios dentro del método
+
+        if parsed_path.path == "/ping":
+            self.send_response(200)
+            self.send_header("Content-type", "text/plain")
+            self.end_headers()
+            self.wfile.write(b"pong")
+            return
         
         # Parseamos la URL y los parámetros
         parsed_path = urlparse(self.path)
